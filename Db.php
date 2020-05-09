@@ -9,6 +9,7 @@ function connectToDb(){
    if(!$connect) {
        echo "An error occurred connecting to the database";
    }
+   
 
 
 }
