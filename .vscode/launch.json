@@ -10,7 +10,8 @@
             "name": "Listen for XDebug",
             "type": "php",
             "request": "launch",
-            "port": 9001
+            "port": 9001,
+            "runtimeExecutable": "D:\\Program Files (x86)\\PHP\\php\\php.exe"
         },
         {
             "name": "Launch currently open script",
@@ -18,7 +19,8 @@
             "request": "launch",
             "program": "${file}",
             "cwd": "${fileDirname}",
-            "port": 9000
+            "port": 9000,
+            "runtimeExecutable": "‪D:\\Program Files (x86)\\PHP\\php\\php.exe"
         }
     ]
 }
