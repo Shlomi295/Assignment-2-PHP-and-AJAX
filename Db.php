@@ -1,6 +1,6 @@
 <?php
 
-function connectToDb(){
+function callDb($query){
    $dbuser = "smoreh";
    $dbpass = "M0reh295";
    $db = "SSID";
@@ -10,9 +10,11 @@ function connectToDb(){
        echo "An error occurred connecting to the database";
    }
 
-   $query = "SELECT * FROM Login"; 
-
-
+   $stmt = OCIParse($connect, $query);
+   if(!$stmt) {
+       echo "An error occurred in parsing the SQL string.\n";
+       exit;
+   } OCIExecute($stmt);
 }
 
 ?>
