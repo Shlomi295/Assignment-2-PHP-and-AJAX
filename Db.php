@@ -9,7 +9,8 @@ function connectToDb(){
    if(!$connect) {
        echo "An error occurred connecting to the database";
    }
-   
+
+   $query = "SELECT * FROM Login"; 
 
 
 }
