@@ -82,6 +82,7 @@ if (
 ) {
   $name = $_POST['username'];
   $pass = $_POST['password'];
+  $pass = hash('sha512', $pass);
 }
 oci_bind_by_name($stmt, ':USERNAME', $name);
 oci_bind_by_name($stmt, ':PASSWORD', $pass);
