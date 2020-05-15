@@ -1,66 +1,57 @@
-<?php 
+<?php
+include 'Db.php';
 
-$secret= $_POST["secret"];
-$response = $_POST["response"];
-$url = "https://www.google.com/recaptcha/api/siteverify?secret='.$secret.'&response='.$response";
-$verify = file_get_contents($url);
-echo $verify;
-// if (isset($_POST['username'])) 
-// {
-//     $username = '';
-//     $password = '';
+session_start();
+$conn = OpenCon();
 
-//     $username_error = '';
-//     $password_error = '';
-//     $captcha_error = '';
-// }
+        $username;$password;$captcha;
+        if(isset($_POST['username'])){
+        $username=$_POST['username'];
+        }
+        if(isset($_POST['password'])){
+        $password=$_POST['password'];
+        }
+        if(isset($_POST['g-recaptcha-response'])){
+        $captcha=$_POST['g-recaptcha-response'];
+        }
+        if(!$captcha){
+        echo '<h2>Please check the the captcha form.</h2>';
+        exit;
+        }
 
-// if (empty($_POST['username'])) {
-//     $username_error = 'Username is required';
-// }
-// else
-// {
-//     $name = $_POST['username'];
-// }
 
-// if (empty($_POST['password'])) 
-// {
-//     $password_error = 'Password is required';
-// }
-// else
-// {
-//     $pass = $_POST['password'];
-// }
+        $secretKey = "6LdaJ_cUAAAAANx7THOX9A9hMkhJ3EVjzt-R6tSe";
+        $ip = $_SERVER['REMOTE_ADDR'];
+        // post request to server
+        $url = 'https://www.google.com/recaptcha/api/siteverify?secret=' . urlencode($secretKey) .  '&response=' . urlencode($captcha);
+        $response = file_get_contents($url);
+        $responseKeys = json_decode($response,true);
+        // should return JSON with success as true
+        if($responseKeys["success"]) 
+        {
+            $data = array('success' =>true);
+        } 
+        else 
+        {
+            $data = array('success' =>false);
+            echo $data; 
+        }   
+     
+        $sql = "SELECT ID  FROM Login WHERE  Username = '$username' and password = '$password'";
+        $result = $conn->query($sql);
 
-// if (empty($_POST['g-recaptcha-response'])) 
-// {
-//     $captcha_error = 'Captcha is required';
-// }
-// else
-// {
-//     $secret_key = '6LdaJ_cUAAAAANx7THOX9A9hMkhJ3EVjzt-R6tSe';
-//     $response = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$secret_key.'&response='.$_POST['g-recaptcha-response']);
+        if ($result->num_rows > 0 && $data['success'] == true) {
+            echo "<h3>log in successful</h3>";
+            $_SESSION['message'] = 'success';
 
-//     $response_data = json_decode($response);
+            redirect_to('welcome.php');
 
-//     if (!$response_data->success) {
-//         $captcha_error = 'Captcha verification failed';  
-//     }
-// }
-
-// if($username_error == '' && $password_error == '' && $captcha_error == ''){
-//     $data = array(
-//         'success' =>true
-//     );
-// }
-// else
-// {
-//     $data = array(
-//         'username_error' => $username_error,
-//         'password_error' => $password_error,
-//         'captcha_error' => $captcha_error
-//     );
-// }
-// echo json_encode($data);
-
+        }
+        else 
+        {
+            $_SESSION['message'] = 'failed';
+            redirect_to('login.php?message='.$_SESSION['message']);
+        }
+    
+           
 ?>

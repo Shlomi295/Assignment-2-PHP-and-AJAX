@@ -5,6 +5,22 @@
     margin-top: 10px;
 
 }
+.container{
+  width: 100%;
+  padding-right: 20px;
+  padding: 50px;
+  margin-top: 1rem;
+  padding-left: 20px;
+  margin-right: auto;
+  margin-left: auto;
+  background: gainsboro;
+}
+p{
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+a{
+  font-weight: 500;
+}
 
 
 #snackbar {

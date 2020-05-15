@@ -1,6 +1,5 @@
 <?php
 
-
 function OpenCon()
  {
  $dbhost = "localhost";
@@ -16,4 +15,11 @@ function OpenCon()
  {
  $conn -> close();
  }
+
+ function redirect_to( $location = NULL ) {
+    if ($location != NULL) {
+        header("Location: {$location}");
+        exit;
+    }
+}
 ?>
