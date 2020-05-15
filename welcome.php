@@ -1,8 +1,9 @@
 <?php
 include 'Db.php';
-include 'employees.json';
+//include 'employees.json';
 
-
+$json  = file_get_contents("employees.json"); //read json from URL
+$obj = json_decode($json, true); 
 ?>
 <html>
 <head>
@@ -21,6 +22,41 @@ include 'employees.json';
   <a class="nav-link" href="#">Search Employee Data</a>
   <a class="nav-link" href="#">Insert employee data</a>
 </nav>
+<div class="row">
+<table class="table">
+<thead class="thead-dark">
+<tr>
+            <th scope="col">ID</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+          </tr>
+        </thead>
+        <tbody>
+     <?php
+      if($obj != null)
+      { 
+        for ($i=0;$i<count($obj);$i++){
+            $vals= $obj[$i];
+            ?>
+            <tr>
+            <td><?php $vals["id"] ?></td>
+            <td><?php $vals["firstname"] ?></td>
+            <td><?php $vals["lastname"] ?></td>
+          </tr>
+          <?php
+        }
+    }
+    ?>
+
+
+        
+        
+         
+          
+        </tbody>
+      </table>
+
+</div>
 </div>
 </body>
 </html>
