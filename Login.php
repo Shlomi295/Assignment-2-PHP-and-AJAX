@@ -23,7 +23,7 @@ $conn = OpenCon();
 <script type="text/javascript">
       var onloadCallback = function() {
         grecaptcha.render('html_element', {
-          'sitekey' : '6LdaJ_cUAAAAANiq5Csqa6OWJHv7LrHcVjP1YIsy'
+          'sitekey' : ''
         });
       };
     </script>
@@ -42,7 +42,7 @@ $conn = OpenCon();
     <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password" required="required" minlength="5">
     <span id="password_error" class="text-danger"></span>
   </div>
-  <div class="g-recaptcha" data-sitekey="6LdaJ_cUAAAAANiq5Csqa6OWJHv7LrHcVjP1YIsy"></div>
+  <div class="g-recaptcha" data-sitekey=""></div>
       <span id="captcha_error" class="text-danger"></span>
 <div class="form-group" col-md-6>
 <button id="register" type="submit" class="btn btn-primary btn-submit">Submit</button>
