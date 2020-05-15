@@ -20,7 +20,7 @@ $conn = OpenCon();
         }
 
 
-        $secretKey = "6LdaJ_cUAAAAANx7THOX9A9hMkhJ3EVjzt-R6tSe";
+        $secretKey = "";
         $ip = $_SERVER['REMOTE_ADDR'];
         // post request to server
         $url = 'https://www.google.com/recaptcha/api/siteverify?secret=' . urlencode($secretKey) .  '&response=' . urlencode($captcha);
