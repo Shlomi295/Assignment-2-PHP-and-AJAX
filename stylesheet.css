@@ -18,18 +18,36 @@
 p{
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
-.right {
-  position: absolute;
-  right: 24%;
-  width: 100px;
-  border: 3px solid #73AD21;
-  padding: 10px;
-}
-.logout{
-  margin-left:auto; margin-right:0;
-  background-color: #333;
+html, body{ height:100%; margin:0; }
+footer{ height:50px; background:gainsboro; }
 
+body{ 
+  display:flex; 
+  flex-direction:column; 
 }
+
+footer{
+  margin-top:auto; 
+}
+#footer-text{
+  position: absolute;
+  right: 50%;
+  margin: 10px;
+  font-weight: 900;
+  font-family: sans-serif;
+}}
+
+.right {
+  position: absolute !important;;
+  right: 21% !important;;
+  width: 100px !important;;
+  border: 3px solid #a0a29c !important;; 
+  padding: 10px !important;;
+}
+.home{
+  background-color: #007bff !important;
+}
+
 a.nav-link{
   font-weight: 600;
   font-size: larger;

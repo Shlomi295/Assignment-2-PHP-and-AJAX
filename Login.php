@@ -73,6 +73,9 @@ $conn = OpenCon();
   </div>
 </div>
 <div id="snackbar">Some text some message..</div>
+<footer class="footer">
+    <p id="footer-text">Shlomi Moreh</p>
+</footer>
 </body>
 
 <?php

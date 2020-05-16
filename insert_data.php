@@ -16,7 +16,7 @@ $obj = json_decode($json, true);
 </head>
 <body>
 <div class="container">
- <div class="row">
+<div class="row">
   <nav class="nav">
     <a class="nav-link home" href="welcome.php">Home</a>
     <a class="nav-link active" href="display_data.php">Display Employee Data</a>
@@ -25,16 +25,6 @@ $obj = json_decode($json, true);
     <a class="logout nav-link right" href="login.php">Logout</a>
 </nav>
   </div>
-
-</div>
-<div class="container">
-<div class="jumbotron">
-  <h1 class="display-4">Hello, SIT780!</h1>
-  <p class="lead">This is the website for Assignment 2, due on the 29/05/2020</p>
-  <hr class="my-4">
-  <p>It uses PHP and Ajax calls and also combine different data sources from Json files and Database tables.</p>
-  <a class="btn btn-primary btn-lg" href="https://d2l.deakin.edu.au/d2l/le/content/880701/viewContent/4983563/View" role="button">Learn more</a>
-</div>
 </div>
 <footer class="footer">
     <p id="footer-text">Shlomi Moreh</p>

@@ -19,10 +19,11 @@ $obj = json_decode($json, true);
 <div class="container">
   <div class="row">
   <nav class="nav">
-  <a class="nav-link active" href="display_data.php">Display Employee Data</a>
-  <a class="nav-link" href="#">Search Employee Data</a>
-  <a class="nav-link" href="#">Insert employee data</a>
-  <a class="logout nav-link right" href="login.php">Logout</a>
+    <a class="nav-link home" href="welcome.php">Home</a>
+    <a class="nav-link active" href="display_data.php">Display Employee Data</a>
+    <a class="nav-link" href="search_data.php">Search Employee Data</a>
+    <a class="nav-link" href="insert_data.php">Insert employee data</a>
+    <a class="logout nav-link right" href="login.php">Logout</a>
 
 </nav>
   </div>
@@ -65,6 +66,8 @@ $obj = json_decode($json, true);
 </div>
 </div>
 
-
+<footer class="footer">
+    <p id="footer-text">Shlomi Moreh</p>
+</footer>
 </body>
 </html>
