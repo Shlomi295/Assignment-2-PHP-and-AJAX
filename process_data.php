@@ -15,12 +15,13 @@ $conn = OpenCon();
         $captcha=$_POST['g-recaptcha-response'];
         }
         if(!$captcha){
-        echo '<h2>Please check the the captcha form.</h2>';
+            $_SESSION['message'] = 'captcha';
+            redirect_to('login.php?message='.$_SESSION['message']);
         exit;
         }
 
 
-        $secretKey = "";
+        $secretKey = "6LdaJ_cUAAAAANx7THOX9A9hMkhJ3EVjzt-R6tSe";
         $ip = $_SERVER['REMOTE_ADDR'];
         // post request to server
         $url = 'https://www.google.com/recaptcha/api/siteverify?secret=' . urlencode($secretKey) .  '&response=' . urlencode($captcha);
