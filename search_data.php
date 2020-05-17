@@ -33,7 +33,7 @@ $obj = json_decode($json, true);
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-        <form class="form-inline">
+        <form onsubmit="searchJson()" class="form-inline">
             <i class="fas fa-search"></i>
             <div class="form-group mb-2">
                         </div>
@@ -41,7 +41,7 @@ $obj = json_decode($json, true);
                 <label for="search" class="sr-only">Search</label>
                 <input type="text" class="form-control" id="search" placeholder="First or Last name">
             </div>
-            <button type="submit" class="btn btn-primary mb-2">Search</button>
+            <button id="btn-search" type="submit" class="btn btn-primary mb-2">Search</button>
         </form>
         </div>
           
@@ -54,6 +54,28 @@ $obj = json_decode($json, true);
         </div>
     </div>
 </div>
+<script>
+    var word = $("#search").val();
+    var obj;
+    var url = 'employees.json';
+    var request = new XMLHttpRequest();
+    request.open('GET',url);
+    request.responseType = 'json';
+    request.send();
+
+    request.onload = function (){
+        obj = request.response;
+
+        for (let i = 0; i < obj.length; i++) {
+            if  (obj[i] == word)
+            {
+
+            }
+            
+        }
+    }
+
+</script>
 <footer class="footer">
     <p id="footer-text">Shlomi Moreh</p>
 </footer>
