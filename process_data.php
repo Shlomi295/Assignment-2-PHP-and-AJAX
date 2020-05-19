@@ -25,7 +25,12 @@ $conn = OpenCon();
         $ip = $_SERVER['REMOTE_ADDR'];
         // post request to server
         $url = 'https://www.google.com/recaptcha/api/siteverify?secret=' . urlencode($secretKey) .  '&response=' . urlencode($captcha);
-        $response = file_get_contents($url);
+
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        $response = curl_exec($curl);
+        
         $responseKeys = json_decode($response,true);
         // should return JSON with success as true
         if($responseKeys["success"]) 

@@ -33,51 +33,67 @@ $obj = json_decode($json, true);
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-        <form onsubmit="searchJson()" class="form-inline">
+        <form class="form-inline">
             <i class="fas fa-search"></i>
             <div class="form-group mb-2">
                         </div>
             <div class="form-group mx-sm-3 mb-2">
                 <label for="search" class="sr-only">Search</label>
-                <input type="text" class="form-control" id="search" placeholder="First or Last name">
+                <input type="text" class="form-control" id="search" placeholder="First or Last name" required = "required" onkeyup="showHint(this.value)">
             </div>
-            <button id="btn-search" type="submit" class="btn btn-primary mb-2">Search</button>
+
+            <!-- <button onsubmit="search()" type="submit" class="btn btn-primary mb-2">Search</button> -->
         </form>
         </div>
-          
     </div>
     <div class="row">
         <div class="col-md-12">
-            <table>
+            <table class="table">
+            <thead class="thead-dark">
+                    <tr>
+                     <th scope="col">ID</th>
+                     <th scope="col">First</th>
+                     <th scope="col">Last</th>
+                  </tr>
+                <tr>
+                <td id="searchid"></td><td id="searchfirstname"></td><td id="searchlastname"></td>
 
+
+                </tr>
             </table>
         </div>
     </div>
 </div>
-<script>
-    var word = $("#search").val();
-    var obj;
-    var url = 'employees.json';
-    var request = new XMLHttpRequest();
-    request.open('GET',url);
-    request.responseType = 'json';
-    request.send();
-
-    request.onload = function (){
-        obj = request.response;
-
-        for (let i = 0; i < obj.length; i++) {
-            if  (obj[i] == word)
-            {
-
-            }
-            
-        }
-    }
-
-</script>
 <footer class="footer">
     <p id="footer-text">Shlomi Moreh</p>
 </footer>
 </body>
+
+<script>
+function showHint(str) {
+  if (str.length == 0) {
+    document.getElementById("searchid").innerHTML = "";
+    document.getElementById("searchfirstname").innerHTML = "";
+    document.getElementById("searchlastname").innerHTML = "";
+    return;
+  } else {
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        var obj = JSON.parse(this.responseText);
+
+        for (i = 0; i < obj.length; i++) {
+            document.getElementById("searchid").innerHTML = obj[i].id;
+            document.getElementById("searchfirstname").innerHTML = obj[i].firstname;
+            document.getElementById("searchlastname").innerHTML = obj[i].lastname;
+            }
+        }
+        
+      }
+    };
+    xmlhttp.open("GET", "search.php?q=" + str, true);
+    xmlhttp.send();
+  }
+
+</script>
 </html>
