@@ -42,13 +42,12 @@ $obj = json_decode($json, true);
                 <input type="text" class="form-control" id="search" placeholder="First or Last name" required = "required" onkeyup="showHint(this.value)">
             </div>
 
-            <!-- <button onsubmit="search()" type="submit" class="btn btn-primary mb-2">Search</button> -->
         </form>
         </div>
     </div>
     <div class="row">
         <div class="col-md-12">
-            <table class="table">
+            <table id="tablesearch" class="table">
             <thead class="thead-dark">
                     <tr>
                      <th scope="col">ID</th>
@@ -78,14 +77,26 @@ function showHint(str) {
     return;
   } else {
     var xmlhttp = new XMLHttpRequest();
-    xmlhttp.onreadystatechange = function() {
+    xmlhttp.onreadystatechange = function(event) {
+        event.preventDefault()
       if (this.readyState == 4 && this.status == 200) {
         var obj = JSON.parse(this.responseText);
+        var table = document.getElementById("tablesearch");
 
         for (i = 0; i < obj.length; i++) {
-            document.getElementById("searchid").innerHTML = obj[i].id;
-            document.getElementById("searchfirstname").innerHTML = obj[i].firstname;
-            document.getElementById("searchlastname").innerHTML = obj[i].lastname;
+            var row = document.createElement("tr");
+            var cell1 = document.createElement("td");
+            var cell2 = document.createElement("td");
+            var cell3 = document.createElement("td");
+            table.appendChild(row);
+            row.appendChild(cell1);
+            row.appendChild(cell2);
+            row.appendChild(cell3);
+          
+            cell1.innerHTML = obj[i].id;
+            cell2.innerHTML = obj[i].firstname;
+            cell3.innerHTML = obj[i].lastname;
+         
             }
         }
         

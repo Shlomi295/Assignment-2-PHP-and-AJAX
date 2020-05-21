@@ -24,7 +24,21 @@ if ($q !== "") {
         }
     }
   }
-  $response = json_encode($Array, true);
-  echo $response === "" ? "no suggestion" : $response;
+//  $response = json_decode($Array, true);
+
+echo "<table>
+<tr>
+<th>Id</th>
+<th>Firstname</th>
+<th>Lastname</th>
+</tr>";
+$a = 0;
+for($x = 0; $x < count($Array); $x++){
+    echo "<tr>";
+    echo "<td>" . $Array[$x]['id'] . "</td>";
+    echo "<td>" . $Array[$x]['firstname'] . "</td>";
+    echo "<td>" . $Array[$x]['lastname'] . "</td>";
+    echo "</tr>";}
+  //echo $response === "" ? "no suggestion" : $response;
 
 ?>
