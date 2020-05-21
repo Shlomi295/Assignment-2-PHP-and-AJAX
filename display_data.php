@@ -53,13 +53,7 @@ $obj = json_decode($json, true);
           <?php
         }
     }
-    ?>
-
-
-        
-        
-         
-          
+    ?>   
         </tbody>
       </table>
 

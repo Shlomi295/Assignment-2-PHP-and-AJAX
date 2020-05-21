@@ -4,7 +4,6 @@ include 'Db.php';
 $conn = OpenCon();
 
 $q = $_REQUEST['q'];
-$hint = "";
 
 $jsonString = file_get_contents('employees.json');
 $jsonArray = json_decode($jsonString, true);
@@ -23,22 +22,48 @@ if ($q !== "") {
             $Array[] = $jsonArray[$x];
         }
     }
-  }
-//  $response = json_decode($Array, true);
+  } 
+  
+if ($q != ""){
+$query = "SELECT * FROM Employees WHERE FirstName LIKE '$q%' Or LastName LIKE '$q%'";
+$result = ociparse($conn, $query);
+   
+if (!$result) {
+  echo "An error occurred in parsing the SQL string".$result.".$query.\n";
+  exit;
+}
+OCIExecute($result);
+}
 
-echo "<table>
+echo "<table class='table'>
+<thead class='thead-dark'>
 <tr>
 <th>Id</th>
 <th>Firstname</th>
 <th>Lastname</th>
+<th>Source</th>
 </tr>";
-$a = 0;
+
+
+
+while(OCIFetch($result)){
+    $id = OCIResult($result, 'ID');
+    $firstName = OCIResult($result, 'FirstName');
+    $lastName = OCIResult($result, 'LastName');
+    echo "<tr>";
+    echo "<td>" . print $id . "</td>";
+    echo "<td>" . print $firstName . "</td>";
+    echo "<td>" . print $lastName . "</td>";
+    echo "<td>Database</td>";
+    echo "</tr>";
+} 
+
 for($x = 0; $x < count($Array); $x++){
     echo "<tr>";
     echo "<td>" . $Array[$x]['id'] . "</td>";
     echo "<td>" . $Array[$x]['firstname'] . "</td>";
     echo "<td>" . $Array[$x]['lastname'] . "</td>";
+    echo "<td>Json</td>";
     echo "</tr>";}
-  //echo $response === "" ? "no suggestion" : $response;
 
 ?>

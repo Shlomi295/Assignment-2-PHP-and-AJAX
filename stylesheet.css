@@ -1,5 +1,5 @@
 body{
-  background-color: #313131;
+  background-color: #313131 !important;
 }
 
 .login-input {
@@ -7,7 +7,9 @@ body{
 }
 .btn-submit{
     margin-top: 10px;
-
+}
+.btn-insert{
+  margin-left: 21px;
 }
 .container{
   width: 100%;
@@ -33,6 +35,9 @@ body{
 
 footer{
   margin-top:auto; 
+  background-color: #a1a7bd;
+  position: sticky;
+
 }
 #footer-text{
   position: absolute;
@@ -40,7 +45,7 @@ footer{
   margin: 10px;
   font-weight: 900;
   font-family: sans-serif;
-}}
+}
 
 .right {
   position: absolute !important;;
@@ -67,8 +72,20 @@ a.nav-link{
 .table td{
   font-weight: 700;
 }
+.td-json{
+  background-color: #999a97;
+}
+.td-source{
+  background-color: #383737;
+}
+.select-source{
+  margin: 20px;
 
-
+}
+#insertmessage{
+  margin-left: 20px;
+  color: #019c01;
+}
 /* The snackbar - position it at the bottom and in the middle of the screen */
 #snackbar {
   visibility: hidden; /* Hidden by default. Visible on click */

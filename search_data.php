@@ -46,8 +46,8 @@ $obj = json_decode($json, true);
         </div>
     </div>
     <div class="row">
-        <div class="col-md-12">
-            <table id="tablesearch" class="table">
+        <div class="col-md-12" id="searchresult">
+            <!-- <table id="tablesearch" class="table">
             <thead class="thead-dark">
                     <tr>
                      <th scope="col">ID</th>
@@ -59,7 +59,7 @@ $obj = json_decode($json, true);
 
 
                 </tr>
-            </table>
+            </table> -->
         </div>
     </div>
 </div>
@@ -71,33 +71,17 @@ $obj = json_decode($json, true);
 <script>
 function showHint(str) {
   if (str.length == 0) {
-    document.getElementById("searchid").innerHTML = "";
-    document.getElementById("searchfirstname").innerHTML = "";
-    document.getElementById("searchlastname").innerHTML = "";
+    document.getElementById("searchresult").innerHTML="";
+    document.getElementById("searchresult").style.border="0px";
     return;
   } else {
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function(event) {
         event.preventDefault()
       if (this.readyState == 4 && this.status == 200) {
-        var obj = JSON.parse(this.responseText);
-        var table = document.getElementById("tablesearch");
-
-        for (i = 0; i < obj.length; i++) {
-            var row = document.createElement("tr");
-            var cell1 = document.createElement("td");
-            var cell2 = document.createElement("td");
-            var cell3 = document.createElement("td");
-            table.appendChild(row);
-            row.appendChild(cell1);
-            row.appendChild(cell2);
-            row.appendChild(cell3);
-          
-            cell1.innerHTML = obj[i].id;
-            cell2.innerHTML = obj[i].firstname;
-            cell3.innerHTML = obj[i].lastname;
-         
-            }
+      //  var obj = JSON.parse(this.responseText);
+      //  var table = document.getElementById("tablesearch");
+        document.getElementById("searchresult").innerHTML = this.responseText;
         }
         
       }
